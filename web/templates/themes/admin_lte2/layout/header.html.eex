@@ -1,9 +1,8 @@
 <% import ExAdmin.Gettext %>
 <header class="main-header" id="header">
   <a href="#" class="logo">
-    <span class="logo-mini"><%= ExAdmin.LayoutView.logo_mini %></span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><%= ExAdmin.LayoutView.logo_full %></span>
+    <span class="logo-lg"><%= Application.get_env(:ex_admin, :title) %></span>
   </a>
 
   <nav class="navbar navbar-static-top" role="navigation">
