@@ -61,9 +61,6 @@
           </div>
         </section>
       </div>
-      <footer id="footer" class="main-footer" style="font-size: 90%">
-        <%= ExAdmin.LayoutView.footer_content %>
-      </footer>
     </div>
     <script>
       $.widget.bridge('uibutton', $.ui.button);
