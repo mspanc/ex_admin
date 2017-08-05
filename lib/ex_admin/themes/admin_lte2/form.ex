@@ -95,10 +95,17 @@ defmodule ExAdmin.Theme.AdminLte2.Form do
   end
 
   def build_actions_block(conn, _model_name, mode) do
-    display_name = ExAdmin.Utils.displayable_name_singular conn
-    label = if mode == :new, do: (gettext "Create"), else: (gettext "Update")
+    {_, label} = case mode do
+      :new ->
+        List.keyfind(conn.assigns.defn.action_labels, :create, 0)
+      :edit ->
+        List.keyfind(conn.assigns.defn.action_labels, :update, 0)
+      mode ->
+        List.keyfind(conn.assigns.defn.action_labels, mode, 0)
+    end
+
     div ".box-footer" do
-      Xain.input ".btn.btn-primary", name: "commit", type: :submit, value: escape_value("#{label} #{humanize display_name}")
+      Xain.input ".btn.btn-primary", name: "commit", type: :submit, value: escape_value(label)
       a(".btn.btn-default.btn-cancel " <> (gettext "Cancel"), href: admin_resource_path(conn, :index))
     end
   end
