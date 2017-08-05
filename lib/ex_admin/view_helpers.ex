@@ -49,7 +49,14 @@ defmodule ExAdmin.ViewHelpers do
     singular = Inflex.singularize plural
     case ExAdmin.Utils.action_name(conn) do
       :index ->
-        plural
+        cond do
+          function_exported?(ExAdmin.get_registered(resource.__struct__).__struct__, :display_name_index, 0) ->
+            apply(ExAdmin.get_registered(resource.__struct__).__struct__, :display_name_index, [])
+          function_exported?(resource.__struct__, :display_name_index, 0) ->
+            apply(resource.__struct__, :display_name_index, [])
+          true ->
+            plural
+          end
       :show ->
         cond do
           function_exported?(ExAdmin.get_registered(resource.__struct__).__struct__, :display_name, 1) ->
