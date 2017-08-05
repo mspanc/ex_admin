@@ -258,6 +258,7 @@ defmodule ExAdmin do
   def get_title_actions(%Plug.Conn{private: _private, path_info: _path_info} = conn) do
     defn = conn.assigns.defn
     fun = defn |> Map.get(:title_actions)
+
     fun.(conn, defn)
   end
 
@@ -329,7 +330,7 @@ defmodule ExAdmin do
     if action in actions do
       if ExAdmin.Utils.authorized_action?(conn, action, defn) do
         action_name = defn.action_labels[action] || humanize(action)
-        [action_link(conn, "#{action_name} #{name}", action, id)]
+        [action_link(conn, "#{action_name}", action, id)]
       else
         []
       end

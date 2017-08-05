@@ -60,9 +60,9 @@ defmodule ExAdmin.ViewHelpers do
             ExAdmin.Helpers.resource_identity(resource)
         end
       action when action in [:edit, :update] ->
-        (gettext "Edit") <> " #{singular}"
+        "#{singular}"
       action when action in [:new, :create] ->
-        (gettext "New") <> " #{singular}"
+        "#{singular}"
       _ ->
         ""
     end
