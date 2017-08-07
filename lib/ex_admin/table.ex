@@ -147,18 +147,24 @@ defmodule ExAdmin.Table do
   def build_th({field_name, opts}, table_opts) do
     build_th(to_string(field_name), opts, table_opts)
   end
-  def build_th(field_name, _),
-    do: th(".th-#{parameterize field_name} #{humanize field_name}")
+  
+  def build_th(field_name, _) do
+    th(".th-#{parameterize field_name} #{humanize field_name}")
+  end
+
   def build_th(field_name, opts, %{fields: fields} = table_opts) do
-    if String.to_atom(field_name) in fields and opts in [%{}, %{link: true}] do
+    if String.to_atom(field_name) in fields and not is_nil(Map.get(opts, :sortable)) do
       _build_th(field_name, opts, table_opts)
     else
       th(".th-#{field_name_to_class(field_name)} #{humanize Map.get(opts, :label, to_string(field_name))}")
     end
   end
-  def build_th(field_name, _, _), do: build_th(field_name, nil)
 
-  def _build_th(field_name, _opts, %{path_prefix: path_prefix, order: {name, sort},
+  def build_th(field_name, _, _) do
+    build_th(field_name, nil)
+  end
+
+  def _build_th(field_name, opts, %{path_prefix: path_prefix, order: {name, sort},
       fields: _fields} = table_opts) when field_name == name do
     link_order = if sort == "desc", do: "asc", else: "desc"
     page_segment = case Map.get table_opts, :page, nil do
@@ -170,7 +176,7 @@ defmodule ExAdmin.Table do
       scope -> "&scope=#{scope}"
     end
     th(".sortable.sorted-#{sort}.th-#{field_name}") do
-      a("#{humanize field_name}", href: path_prefix <>
+      a("#{humanize Map.get(opts, :label, to_string(field_name))}", href: path_prefix <>
         field_name <> "_#{link_order}#{page_segment}" <> scope_segment <>
         Map.get(table_opts, :filter, ""))
     end
