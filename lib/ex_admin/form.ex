@@ -1267,7 +1267,7 @@ defmodule ExAdmin.Form do
     fn
       :year, opts when date != nil ->
         {year, _, _}  = :erlang.date()
-        {value, opts} = datetime_options(:year, year-5..year+5, id, name, parent, date, opts)
+        {value, opts} = datetime_options(:year, year-100..year, id, name, parent, date, opts)
         build_select(:datetime, :year, value, opts)
       :month, opts when date != nil ->
         {value, opts} = datetime_options(:month, @months, id, name, parent, date, opts)
