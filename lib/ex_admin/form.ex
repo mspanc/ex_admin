@@ -1237,18 +1237,18 @@ defmodule ExAdmin.Form do
     do: raise(ArgumentError, "unrecognized time #{inspect other}")
 
   @months [
-    {"January", "1"},
-    {"February", "2"},
-    {"March", "3"},
-    {"April", "4"},
-    {"May", "5"},
-    {"June", "6"},
-    {"July", "7"},
-    {"August", "8"},
-    {"September", "9"},
-    {"October", "10"},
-    {"November", "11"},
-    {"December", "12"},
+    {"Styczeń", "1"},
+    {"Luty", "2"},
+    {"Marzec", "3"},
+    {"Kwiecień", "4"},
+    {"Maj", "5"},
+    {"Czerwiec", "6"},
+    {"Lipiec", "7"},
+    {"Sierpień", "8"},
+    {"Wrzesień", "9"},
+    {"Październik", "10"},
+    {"Listopad", "11"},
+    {"Grudzień", "12"},
   ]
 
   map = &Enum.map(&1, fn i ->

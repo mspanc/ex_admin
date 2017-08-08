@@ -7,6 +7,7 @@ exports.config = {
           "web/static/vendor/themes/admin_lte2/bootstrap/js/bootstrap.min.js",
           "web/static/vendor/themes/admin_lte2/plugins/daterangepicker/daterangepicker.js",
           "web/static/vendor/themes/admin_lte2/plugins/datepicker/bootstrap-datepicker.js",
+          "web/static/vendor/themes/admin_lte2/plugins/datepicker/locales/bootstrap-datepicker.pl.js",
           "web/static/vendor/themes/admin_lte2/plugins/slimScroll/jquery.slimscroll.min.js",
           "web/static/vendor/themes/admin_lte2/plugins/fastclick/fastclick.min.js",
           "web/static/vendor/themes/admin_lte2/js/ex_admin.js",
